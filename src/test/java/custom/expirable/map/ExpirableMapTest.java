@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by xsobrietyx on 25-September-2019 time 16:23
@@ -22,7 +23,7 @@ public class ExpirableMapTest {
     public void testSimplePassCase(){
         String res = testableCache.put(1, "A");
 
-        assertEquals("", res);
+        assertNull(res);
         assertEquals("A", testableCache.get(1));
     }
 
@@ -32,7 +33,7 @@ public class ExpirableMapTest {
 
         Thread.sleep(1100L);
 
-        assertEquals("", testableCache.get(1));
+        assertNull(testableCache.get(1));
     }
 
     @Test

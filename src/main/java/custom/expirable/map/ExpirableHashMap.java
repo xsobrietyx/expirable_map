@@ -71,7 +71,7 @@ public class ExpirableHashMap implements ExpirableMap<Integer, String> {
         CustomTuple<Long, String> res = this.internalStorage.put(key, ct);
 
         if (Objects.isNull(res)) {
-            return "";
+            return null;
         } else {
             return res.getFieldB();
         }
@@ -83,7 +83,7 @@ public class ExpirableHashMap implements ExpirableMap<Integer, String> {
         CustomTuple<Long, String> res = this.internalStorage.get(key);
 
         if (Objects.isNull(res)) {
-            return "";
+            return null;
         } else {
             return res.getFieldB();
         }
