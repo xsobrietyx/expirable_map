@@ -71,8 +71,8 @@ public class ExpirableHashMap implements ExpirableMap<Integer, String> {
 
     @Override
     public String put(Integer key, String obj) {
-        CustomTuple<Long, String> ct = new CustomTuple<>(System.currentTimeMillis(), obj);
-        CustomTuple<Long, String> res = this.internalStorage.put(key, ct);
+        CustomTuple<Long, String> value = new CustomTuple<>(System.currentTimeMillis(), obj);
+        CustomTuple<Long, String> res = this.internalStorage.put(key, value);
 
         return getResult(res);
     }
