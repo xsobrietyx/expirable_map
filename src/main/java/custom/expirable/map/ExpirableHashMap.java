@@ -65,16 +65,16 @@ public class ExpirableHashMap implements ExpirableMap<Integer, String> {
         return entry -> (entry.getValue().getFieldA() + TTL) > currentTime;
     }
 
+    private String getResult(CustomTuple<Long, String> res) {
+        return Objects.isNull(res) ? null : res.getFieldB();
+    }
+
     @Override
     public String put(Integer key, String obj) {
         CustomTuple<Long, String> ct = new CustomTuple<>(System.currentTimeMillis(), obj);
         CustomTuple<Long, String> res = this.internalStorage.put(key, ct);
 
-        if (Objects.isNull(res)) {
-            return null;
-        } else {
-            return res.getFieldB();
-        }
+        return getResult(res);
     }
 
     @Override
@@ -82,11 +82,7 @@ public class ExpirableHashMap implements ExpirableMap<Integer, String> {
         cleanExpiredObjects();
         CustomTuple<Long, String> res = this.internalStorage.get(key);
 
-        if (Objects.isNull(res)) {
-            return null;
-        } else {
-            return res.getFieldB();
-        }
+        return getResult(res);
     }
 
     @Override
